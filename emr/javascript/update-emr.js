@@ -24,8 +24,8 @@ async function main() {
         // Check to see if we've already enrolled the user.
         const identity = await wallet.get('appUser');
         if (!identity) {
-            console.log('An identity for the user "appUser" does not exist in the wallet');
-            console.log('Run the registerUser.js application before retrying');
+            console.log('An identity for the user "admin" does not exist in the wallet');
+            console.log('Run the enrollAdmin.js application before retrying');
             return;
         }
 
@@ -41,7 +41,7 @@ async function main() {
 
         // Submit the specified transaction.
         let patient = {
-            id: "7067da01-43ff-4c54-a228-76b1956666e2",
+            id: "7067da01-43ff-4c54-a228-76b1956666e3",
             first_name: "Ed",
             last_name: "Helen",
             gender: "Nữ",
@@ -70,7 +70,7 @@ async function main() {
         let emr_diseases = [
             {
                 diseaseCategory: "3bc180fe-676b-4dd8-87ea-15e2c36d62d3",
-                disease: "Bệnh 5"
+                disease: "Bệnh 999"
             }
         ]
         let emr_services = [
@@ -108,7 +108,7 @@ async function main() {
               }
         ]
         let images = []
-        await contract.submitTransaction('createEMR', '9858302d-041b-4bec-98d4-a017f2449294', JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(room), JSON.stringify(living_functions), JSON.stringify(emr_diseases), JSON.stringify(emr_services), JSON.stringify(emr_drugs), JSON.stringify(images));
+        await contract.submitTransaction('updateEMR', '9858302d-041b-4bec-98d4-a017f2449295', JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(room), JSON.stringify(living_functions), JSON.stringify(emr_diseases), JSON.stringify(emr_services), JSON.stringify(emr_drugs), JSON.stringify(images));
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.

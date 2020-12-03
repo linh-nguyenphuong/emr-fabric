@@ -23,6 +23,13 @@ pushd ../emr-network
 ./network.sh up createChannel -c emr-channel -ca -s couchdb
 # ./network.sh deployCC -c emr-channel -ccn emr-chaincode -ccv 1 -cci initLedger -ccl javascript -ccp ../chaincode/admin/
 ./network.sh deployCC -c emr-channel -ccn emr-chaincode -ccv 1 -ccl javascript -ccp ../chaincode/admin/
+# ./network.sh deployCC -c emr-channel -ccn emr-chaincode-user -ccv 1 -ccl javascript -ccp ../chaincode/user/
+popd
+
+pushd ./javascript
+node enrollAdmin.js
+node registerUser.js
+node create-emr.js
 popd
 
 cat <<EOF

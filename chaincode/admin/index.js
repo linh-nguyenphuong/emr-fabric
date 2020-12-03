@@ -7,8 +7,6 @@
 'use strict';
 
 const EMRAdmin = require('./lib/admin');
-const EMRUser = require('./lib/user');
 
 module.exports.EMRAdmin = EMRAdmin;
-module.exports.EMRUser = EMRUser;
-module.exports.contracts = [ EMRAdmin, EMRUser ];
+module.exports.contracts = [ EMRAdmin ];
