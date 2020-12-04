@@ -31,16 +31,18 @@ async function main() {
         //     return;
         // }
 
-        const identity = await wallet.get('appUser');
+        const user_id = '19245877-397b-4b32-9462-dfeae88d7016'
+        const identity = await wallet.get(user_id);
         if (!identity) {
             console.log('An identity for the user "admin" does not exist in the wallet');
             console.log('Run the enrollAdmin.js application before retrying');
             return;
         }
+        // console.log(identity)
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
-        await gateway.connect(ccp, { wallet, identity: 'appUser', discovery: { enabled: true, asLocalhost: true } });
+        await gateway.connect(ccp, { wallet, identity: user_id, discovery: { enabled: true, asLocalhost: true } });
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork('emr-channel');
@@ -59,17 +61,18 @@ async function main() {
         // });
 
         // Get EMR by ID
-        // const result = await contract.evaluateTransaction('queryAllEMRs');
+        const result = await contract.evaluateTransaction('queryAllEMRs');
         // const result = await contract.evaluateTransaction('getHistoryEMR', '9858302d-041b-4bec-98d4-a017f2449295');
-        // const result = await contract.evaluateTransaction('queryEMR', '9858302d-041b-4bec-98d4-a017f2449295');
-        const result = await contract.evaluateTransaction('queryOwnEMR', '7067da01-43ff-4c54-a228-76b1956666e3');
+        // const result = await contract.evaluateTransaction('queryEMR', '9858302d-041b-4bec-98d4-a017f2449001');
+        // const result = await contract.evaluateTransaction('queryOwnEMR', '7067da01-43ff-4c54-a228-76b1956666e3');
         // const json_result = JSON.parse(result.toString()); 
         // console.log(json_result);
 
         // let str = JSON.parse(result.toString())
         // console.log(JSON.stringify(str))
 
-        console.log(JSON.stringify(JSON.parse(result.toString()), null, 4))
+        // console.log(JSON.stringify(JSON.parse(result.toString()), null, 4))
+        console.log(result.toString())
 
         // Disconnect from the gateway.
         await gateway.disconnect();
