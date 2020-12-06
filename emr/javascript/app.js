@@ -3,7 +3,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 443;
+const fs = require('fs');
+var https = require('https');
+
+var privateKey = fs.readFileSync('/etc/letsencrypt/live/api.emr-client.tech/privkey.pem');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/api.emr-client.tech/fullchain.pem');
+
+var credentials = {key: privateKey, cert: certificate};
 
 app.use(morgan('combined'))
 app.use(cors())
@@ -33,9 +40,10 @@ app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
 })
 
-app.listen(port, () => {
-    console.log('RESTful API server started on port ' + port);
-});
+// app.listen(port, () => {
+//     console.log('RESTful API server started on port ' + port);
+// });
 
-
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(443);
 
