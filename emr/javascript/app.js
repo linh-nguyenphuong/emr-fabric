@@ -13,7 +13,6 @@ var certificate = fs.readFileSync('/etc/letsencrypt/live/api.emr-client.tech/ful
 var credentials = {key: privateKey, cert: certificate};
 
 app.use(morgan('combined'))
-app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -25,13 +24,10 @@ const whitelist = [
     'https://127.0.0.1:3000',
     'https://emr-client.tech'
 ]
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", whitelist);
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
+const corsOptions = {
+    origin: whitelist
+}
+app.use(cors(corsOptions))
  
 let routes = require('./api/routes') 
 routes(app)
