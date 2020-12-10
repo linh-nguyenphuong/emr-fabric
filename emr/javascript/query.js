@@ -31,7 +31,7 @@ async function main() {
         //     return;
         // }
 
-        const user_id = '19245877-397b-4b32-9462-dfeae88d7016'
+        const user_id = 'admin'
         const identity = await wallet.get(user_id);
         if (!identity) {
             console.log('An identity for the user "admin" does not exist in the wallet');
@@ -61,9 +61,9 @@ async function main() {
         // });
 
         // Get EMR by ID
-        const result = await contract.evaluateTransaction('queryAllEMRs');
+       	const result = await contract.evaluateTransaction('queryAllEMRs');
         // const result = await contract.evaluateTransaction('getHistoryEMR', '9858302d-041b-4bec-98d4-a017f2449295');
-        // const result = await contract.evaluateTransaction('queryEMR', '9858302d-041b-4bec-98d4-a017f2449001');
+        // const result = await contract.evaluateTransaction('queryEMR', '7982f64a-bce1-4000-ba3b-d9d26ff0e87f');
         // const result = await contract.evaluateTransaction('queryOwnEMR', '7067da01-43ff-4c54-a228-76b1956666e3');
         // const json_result = JSON.parse(result.toString()); 
         // console.log(json_result);
@@ -71,8 +71,8 @@ async function main() {
         // let str = JSON.parse(result.toString())
         // console.log(JSON.stringify(str))
 
-        // console.log(JSON.stringify(JSON.parse(result.toString()), null, 4))
-        console.log(result.toString())
+        console.log(JSON.stringify(JSON.parse(result.toString()), null, 4))
+        // console.log(result.toString())
 
         // Disconnect from the gateway.
         await gateway.disconnect();

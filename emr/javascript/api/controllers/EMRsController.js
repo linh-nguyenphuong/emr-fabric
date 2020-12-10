@@ -148,7 +148,7 @@ module.exports = {
             // Submit the specified transaction.
             const emr_id = req.params.emr_id
             const patient = req.body.patient
-            const physician = req.body.patient
+            const physician = req.body.physician
             const room = req.body.room
             const living_functions = req.body.living_functions
             const emr_diseases = req.body.emr_diseases
