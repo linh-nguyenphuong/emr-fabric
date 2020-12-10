@@ -59,6 +59,7 @@ class EMRAdmin extends Contract {
         let completed_at = null
 
         const emr = {
+            id: emrNumber,
             patient: JSON.parse(patient),
             physician: JSON.parse(physician),
             room: JSON.parse(room),
