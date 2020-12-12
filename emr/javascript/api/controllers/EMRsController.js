@@ -231,4 +231,55 @@ module.exports = {
             res.status(400).send({message: `Failed to create EMR "${visit_id}"`})
         }
     },
+    complete: async (req, res) => {
+        try {
+            const emr_id = req.params.emr_id
+            let data = decodeToken(req)
+            if (data.message) {
+                return res.status(401).send({message: data.message})
+            }
+
+            if (data.token_object.role !== 'admin' && data.token_object.role !== 'physician') {
+                return res.status(401).send({message: 'Please log in with an administrator/physician account.'})
+            }
+
+            // load the network configuration
+            const ccpPath = path.resolve(__dirname, '..', '..', '..', '..', 'emr-network', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
+            let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
+    
+            // Create a new file system based wallet for managing identities.
+            const walletPath = path.join(process.cwd(), 'wallet');
+            const wallet = await Wallets.newFileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
+    
+            // Check to see if we've already enrolled the user.
+            const user_id = data.token_object.user_id
+            const identity = await wallet.get(user_id);
+            if (!identity) {
+                console.log('An identity for the user "admin" does not exist in the wallet');
+                console.log('Run the enrollAdmin.js application before retrying');
+                const message = `An identity for the user "${user_id}" doesn't exist in the wallet`
+                return res.status(400).send({message: message})
+            }
+    
+            // Create a new gateway for connecting to our peer node.
+            const gateway = new Gateway();
+            await gateway.connect(ccp, { wallet, identity: user_id, discovery: { enabled: true, asLocalhost: true } });
+    
+            // Get the network (channel) our contract is deployed to.
+            const network = await gateway.getNetwork('emr-channel');
+    
+            // Get the contract from the network.
+            const contract = network.getContract('emr-chaincode');
+            await contract.evaluateTransaction('completeEMR', emr_id);
+            // Disconnect from the gateway.
+            await gateway.disconnect();
+            res.json({
+                message: `Successfully completed EMR "${emr_id}"`
+            })
+        } catch (error) {
+            console.error(`Failed to submit transaction: ${error}`);
+            res.status(400).send({message: `Failed to get EMR history "${emr_id}"`})
+        }
+    },
 }

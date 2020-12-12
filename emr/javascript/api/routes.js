@@ -19,6 +19,9 @@ module.exports = function(app) {
     .get(emrsCtrl.detail)
     .put(emrsCtrl.update)
 
+  app.route('/api/physician/emrs/:emr_id/complete')
+    .get(emrsCtrl.complete)
+
   app.route('/api/patient/emrs')
     .get(emrsOwnCtrl.get)
 
