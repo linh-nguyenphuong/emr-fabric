@@ -376,7 +376,7 @@ peer:
     #     core/handlers/library/library.go for statically compiled handlers
     #   - library path to shared object binary for pluggable filters
     # Auth filters and decorators are chained and executed in the order that
-    # they are defined. For example:
+    # they are defined. For emr:
     # authFilters:
     #   -
     #     name: FilterOne

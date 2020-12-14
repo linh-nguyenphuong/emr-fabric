@@ -129,7 +129,7 @@ function generateOrg3Definition() {
   echo "##########################################################"
    export FABRIC_CFG_PATH=$PWD
    set -x
-   configtxgen -printOrg Org3MSP > ../organizations/peerOrganizations/org3.example.com/org3.json
+   configtxgen -printOrg Org3MSP > ../organizations/peerOrganizations/org3.emr.com/org3.json
    res=$?
    { set +x; } 2>/dev/null
    if [ $res -ne 0 ]; then
@@ -164,7 +164,7 @@ function addOrg3 () {
   fi
 
   # generate artifacts if they don't exist
-  if [ ! -d "../organizations/peerOrganizations/org3.example.com" ]; then
+  if [ ! -d "../organizations/peerOrganizations/org3.emr.com" ]; then
     generateOrg3
     generateOrg3Definition
   fi
