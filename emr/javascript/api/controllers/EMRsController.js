@@ -149,13 +149,8 @@ module.exports = {
             const emr_id = req.params.emr_id
             const patient = req.body.patient
             const physician = req.body.physician
-            const room = req.body.room
-            const living_functions = req.body.living_functions
-            const emr_diseases = req.body.emr_diseases
-            const emr_services = req.body.emr_services
-            const emr_drugs = req.body.emr_drugs
-            const images = req.body.images
-            await contract.submitTransaction('updateEMR', emr_id, JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(room), JSON.stringify(living_functions), JSON.stringify(emr_diseases), JSON.stringify(emr_services), JSON.stringify(emr_drugs), JSON.stringify(images));
+            const medical_record = req.body.medical_record
+            await contract.submitTransaction('updateEMR', emr_id, JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(medical_record));
             const result = await contract.evaluateTransaction('queryEMR', emr_id);
             // Disconnect from the gateway.
             await gateway.disconnect();
@@ -212,13 +207,8 @@ module.exports = {
             const visit_id = req.body.visit_id
             const patient = req.body.patient
             const physician = req.body.patient
-            const room = req.body.room
-            const living_functions = req.body.living_functions
-            const emr_diseases = req.body.emr_diseases
-            const emr_services = req.body.emr_services
-            const emr_drugs = req.body.emr_drugs
-            const images = req.body.images
-            await contract.submitTransaction('createEMR', visit_id, JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(room), JSON.stringify(living_functions), JSON.stringify(emr_diseases), JSON.stringify(emr_services), JSON.stringify(emr_drugs), JSON.stringify(images));
+            const medical_record = req.body.medical_record
+            await contract.submitTransaction('createEMR', visit_id, JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(medical_record), user_id);
             const result = await contract.evaluateTransaction('queryEMR', visit_id);
             // Disconnect from the gateway.
             await gateway.disconnect();

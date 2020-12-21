@@ -44,7 +44,7 @@ class EMRAdmin extends Contract {
         return JSON.stringify(allResults);
     }
 
-    async createEMR(ctx, emrNumber, patient, physician, room, living_functions, emr_diseases, emr_services, emr_drugs, images) {
+    async createEMR(ctx, emrNumber, patient, physician, medical_record, created_by) {
         console.info('============= START : Create EMR ===========');
 
         // Check emrNumber already existed
@@ -62,12 +62,8 @@ class EMRAdmin extends Contract {
             id: emrNumber,
             patient: JSON.parse(patient),
             physician: JSON.parse(physician),
-            room: JSON.parse(room),
-            living_functions: JSON.parse(living_functions),
-            emr_diseases: JSON.parse(emr_diseases),
-            emr_services: JSON.parse(emr_services),
-            emr_drugs: JSON.parse(emr_drugs),
-            images: JSON.parse(images),
+            medical_record: JSON.parse(medical_record),
+            created_by: created_by,
             created_at,
             updated_at,
             completed_at
@@ -96,7 +92,7 @@ class EMRAdmin extends Contract {
         return JSON.stringify(allResults);
     }
 
-    async updateEMR(ctx, emrNumber, patient, physician, room, living_functions, emr_diseases, emr_services, emr_drugs, images) {
+    async updateEMR(ctx, emrNumber, patient, physician, medical_record) {
         console.info('============= START : Update EMR ===========');
 
         const emrAsBytes = await ctx.stub.getState(emrNumber); // get the emr from chaincode state
@@ -111,23 +107,8 @@ class EMRAdmin extends Contract {
         if (physician != null && physician.length > 0) {
             emr.physician = JSON.parse(physician)
         }
-        if (room != null && room.length > 0) {
-            emr.room = JSON.parse(room)
-        }
-        if (living_functions != null && living_functions.length > 0) {
-            emr.living_functions = JSON.parse(living_functions)
-        }
-        if (emr_diseases != null && emr_diseases.length > 0) {
-            emr.emr_diseases = JSON.parse(emr_diseases)
-        }
-        if (emr_services != null && emr_services.length > 0) {
-            emr.emr_services = JSON.parse(emr_services)
-        }
-        if (emr_drugs != null && emr_drugs.length > 0) {
-            emr.emr_drugs = JSON.parse(emr_drugs)
-        }
-        if (images != null && images.length > 0) {
-            emr.images = JSON.parse(images)
+        if (medical_record != null && medical_record.length > 0) {
+            emr.medical_record = JSON.parse(medical_record)
         }
 
         let dt = new Date()

@@ -57,58 +57,97 @@ async function main() {
             role: "physician",
             avatar: "https://res.cloudinary.com/linhpnguyen/image/upload/v1603557722/emr/user_avatar/ath7tysqsrneqimhvtb0.jpg"
         }
-        let room = "Phòng 21"
-        let living_functions = {
-            heartbeat: "110",
-            temp: "10",
-            pressure: "10",
-            breathing: "110",
-            height: "160",
-            weight: "62",
-            bmi: 24.218749999999996
-        }
-        let emr_diseases = [
-            {
-                diseaseCategory: "3bc180fe-676b-4dd8-87ea-15e2c36d62d3",
-                disease: "Bệnh 999"
-            }
-        ]
-        let emr_services = [
-            {
-                service: "Dịch vụ 1",
-                price: "123"
+        let medical_record = {
+            administrative: {
+                fullname: "TRẦN VĂN C",
+                dayOfBirth: "10/02/2000",
+                gender: "Nam",
+                job: "test",
+                ethnicity: "test",
+                expatriate: "test",
+                address: "test",
+                workplace: "test",
+                object: "Khác",
+                insurance_expirity: "25/12/2020",
+                insurance_number: "test",
+                family_member_and_address: "test",
+                phone: "test",
+                checkin_at: "16 giờ 59 phút ngày 20 tháng 11 năm 2020",
+                previous_diagnose: "BÌnh thường",
+                come_from: "Tự đến"
             },
-            {
-                service: "Dịch vụ 2",
-                price: "456"
+            present_complaint: "Ho",
+            ask: {
+                pathological_process: "10 ngày trước bệnh nhân ho có đờm màu trắng đục, không sốt, bệnh nhân có tự mua thuốc uống nhưng không giảm. Cùng ngày đến khám bệnh nhân ho đờm nhiều kèm ớn lạnh, sốt 38.5 độ C",
+                self_medical_history: "Khỏe",
+                family_medical_history: "Khỏe"
+            },
+            examination: {
+                heartbeat: "94",
+                temperature: "39",
+                blood_pressure: "120/70",
+                breathing: "20",
+                weight: "55",
+                body: "Bệnh tỉnh, tiếp xúc tốt\nDa niêm hồng\nTổng trạng trung bình\nTuyến giáp không to, hạch ngoại vi không sờ chạm.",
+                partials: "Tim đều\nPhổi ran nổ rải rác 2 phế trường\nBụng mềm",
+                subclinical_summary: "Công thức máu:\n-Hồng cầu: 4,8.10^12/l\n-Hemoglobin: 116g/l\n-Tiểu cầu: 280.10^9/l\n-Bạch cầu: 13,56.10^9/l\n-Neutrophil: 89%\n-Lympho: 20%\nX quang ngực thẳng: Viêm phổi",
+                initial_diagnose: "Viêm phổi cộng đồng mức độ nhẹ nghĩ do vi khuẩn",
+                drugs: [
+                    {
+                        drugCategory: "55472410-6f62-4a39-8d84-e35535caf44e",
+                        drug: "Augmentin",
+                        drugInstruction: "8h-16h",
+                        total: "2"
+                    },
+                    {
+                        drugCategory: "e36131cd-b29a-40c5-b790-e616569b9e4f",
+                        drug: "Paracetamol",
+                        drugInstruction: "8h-16h",
+                        total: "2"
+                    },
+                    {
+                        drugCategory: "33343424-7353-45d4-acbe-ec4ef617f9db",
+                        drug: "Bromhexin",
+                        drugInstruction: "8h-16h",
+                        total: "2"
+                    }
+                ],
+                processed: null,
+                diagnose: "Viêm phổi cộng đồng mức độ nhẹ nghĩ do vi khuẩn",
+                from_date: "21/12/2020",
+                to_date: "28/12/2020"
+            },
+            summary: {
+                pathological_process_and_clinical_course: "Bệnh nhân nam 35 tuổi vào khám vì lý do 10 ngày trước bệnh nhân ho có đờm màu trắng đục, không sốt, bệnh nhân có tự mua thuốc uống nhưng không giảm. Cùng ngày đến khám bệnh nhân ho đờm nhiều kèm ớn lạnh, sốt 38.50C. Hiện tại bệnh nhân hết sốt, hết ớn lạnh, ho đờm giảm, ăn uống được.",
+                valuable_subclinical_summary: "-Hồng cầu: 4,8.10^12/l\n-Hemoglobin: 116g/l\n-Tiểu cầu: 280.10^9/l\n-Bạch cầu: 13,56.10^9/l\n-Neutrophil: 89%\n-Lympho: 20%\nX quang ngực thẳng: Viêm phổi",
+                primary_disease: "Viêm phổi cộng đồng mức độ nhẹ nghĩ do vi khuẩn",
+                sub_disease: null,
+                treatment_method: "Kháng sinh\nHạ sốt\nLong đờm\nDinh dưỡng",
+                patient_status: "Bệnh tạm ổn",
+                direction_of_treatment: null,
+                services: [
+                    {
+                        id: "30c09062-897a-4903-8f9f-4c759716128b"
+                    },
+                    {
+                        id: "c9f84b32-4ac8-4209-a3d5-a6618c71d03b"
+                    }
+                ],
+                attachments: [
+                    {
+                        uid: "https://res.cloudinary.com/linhpnguyen/image/upload/v1608472884/emr/emr_image/r4bayzlo2yd1nydioh6e.jpg",
+                        id: "https://res.cloudinary.com/linhpnguyen/image/upload/v1608472884/emr/emr_image/r4bayzlo2yd1nydioh6e.jpg",
+                        url: "https://res.cloudinary.com/linhpnguyen/image/upload/v1608472884/emr/emr_image/r4bayzlo2yd1nydioh6e.jpg"
+                    },
+                    {
+                        uid: "https://res.cloudinary.com/linhpnguyen/image/upload/v1608472905/emr/emr_image/rejmiygqomr2iciumiyo.jpg",
+                        id: "https://res.cloudinary.com/linhpnguyen/image/upload/v1608472905/emr/emr_image/rejmiygqomr2iciumiyo.jpg",
+                        url: "https://res.cloudinary.com/linhpnguyen/image/upload/v1608472905/emr/emr_image/rejmiygqomr2iciumiyo.jpg"
+                    }
+                ]
             }
-        ]
-        let emr_drugs = [
-            {
-                total: "4",
-                numberOfDays: "1",
-                morning: "1",
-                afternoon: "1",
-                evening: "1",
-                night: "1",
-                drugInstruction: "Hướng dẫn sử dụng",
-                drugCategory: "e74efef3-841f-4538-acf0-573da4d3a071",
-                drug: "Thuốc cảm"
-              },
-              {
-                total: "8",
-                drugCategory: "e74efef3-841f-4538-acf0-573da4d3a071",
-                drug: "Thuốc cảm",
-                drugInstruction: "Hướng dẫn sử dụng",
-                numberOfDays: "2",
-                morning: "1",
-                afternoon: "1",
-                evening: "1",
-                night: "1"
-              }
-        ]
-        let images = []
-        await contract.submitTransaction('updateEMR', '9858302d-041b-4bec-98d4-a017f2449295', JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(room), JSON.stringify(living_functions), JSON.stringify(emr_diseases), JSON.stringify(emr_services), JSON.stringify(emr_drugs), JSON.stringify(images));
+        }
+        await contract.submitTransaction('updateEMR', '9858302d-041b-4bec-98d4-a017f2449295', JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(medical_record));
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
