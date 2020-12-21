@@ -44,7 +44,7 @@ class EMRAdmin extends Contract {
         return JSON.stringify(allResults);
     }
 
-    async createEMR(ctx, emrNumber, patient, physician, medical_record, created_by) {
+    async createEMR(ctx, emrNumber, patient, physician, room, medical_record, created_by) {
         console.info('============= START : Create EMR ===========');
 
         // Check emrNumber already existed
@@ -62,6 +62,7 @@ class EMRAdmin extends Contract {
             id: emrNumber,
             patient: JSON.parse(patient),
             physician: JSON.parse(physician),
+            room: JSON.parse(room),
             medical_record: JSON.parse(medical_record),
             created_by: created_by,
             created_at,
@@ -92,7 +93,7 @@ class EMRAdmin extends Contract {
         return JSON.stringify(allResults);
     }
 
-    async updateEMR(ctx, emrNumber, patient, physician, medical_record) {
+    async updateEMR(ctx, emrNumber, patient, physician, room, medical_record) {
         console.info('============= START : Update EMR ===========');
 
         const emrAsBytes = await ctx.stub.getState(emrNumber); // get the emr from chaincode state
@@ -106,6 +107,9 @@ class EMRAdmin extends Contract {
         }
         if (physician != null && physician.length > 0) {
             emr.physician = JSON.parse(physician)
+        }
+        if (room != null && room.length > 0) {
+            emr.room = JSON.parse(room)
         }
         if (medical_record != null && medical_record.length > 0) {
             emr.medical_record = JSON.parse(medical_record)

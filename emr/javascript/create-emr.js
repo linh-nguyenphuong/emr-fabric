@@ -57,6 +57,11 @@ async function main() {
             role: "physician",
             avatar: "https://res.cloudinary.com/linhpnguyen/image/upload/v1603557722/emr/user_avatar/ath7tysqsrneqimhvtb0.jpg"
         }
+        let room = {
+            id: '86274125-3bb4-4a2a-9bf2-809204db06b1',
+            name: 'Phong test',
+            number: 999
+        }
         let medical_record = {
             administrative: {
                 fullname: "TRẦN VĂN C",
@@ -147,7 +152,7 @@ async function main() {
                 ]
             }
         }
-        await contract.submitTransaction('createEMR', '9858302d-041b-4bec-98d4-a017f2449295', JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(medical_record), '9858302d-041b-4bec-98d4-a017f2449999');
+        await contract.submitTransaction('createEMR', '9858302d-041b-4bec-98d4-a017f2449295', JSON.stringify(patient), JSON.stringify(physician), JSON.stringify(room), JSON.stringify(medical_record), '9858302d-041b-4bec-98d4-a017f2449999');
         console.log('Transaction has been submitted');
 
         // Disconnect from the gateway.
