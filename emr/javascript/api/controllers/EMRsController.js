@@ -8,7 +8,7 @@ const fs = require('fs');
 module.exports = {
     get: async (req, res) => {
         try {
-            const patient_id = req.params.patient_id
+            const patient_id = req.query.patient_id
             let data = decodeToken(req)
             if (data.message) {
                 return res.status(401).send({message: data.message})
@@ -47,7 +47,7 @@ module.exports = {
             // Get the contract from the network.
             const contract = network.getContract('emr-chaincode');
             
-            const result = null;
+            let result = null;
             if (patient_id) {
                 result = await contract.evaluateTransaction('queryOwnEMR', patient_id);
             }
