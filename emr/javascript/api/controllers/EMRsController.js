@@ -8,7 +8,7 @@ const fs = require('fs');
 module.exports = {
     get: async (req, res) => {
         try {
-            const patient_id = req.body.patient_id
+            const patient_id = req.params.patient_id
             let data = decodeToken(req)
             if (data.message) {
                 return res.status(401).send({message: data.message})
