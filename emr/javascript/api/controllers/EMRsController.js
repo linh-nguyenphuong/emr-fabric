@@ -46,8 +46,14 @@ module.exports = {
     
             // Get the contract from the network.
             const contract = network.getContract('emr-chaincode');
-    
-            const result = await contract.evaluateTransaction('queryOwnEMR', patient_id);
+            
+            const result = null;
+            if (patient_id) {
+                result = await contract.evaluateTransaction('queryOwnEMR', patient_id);
+            }
+            else {
+                result = await contract.evaluateTransaction('queryAllEMRs');
+            }
             // Disconnect from the gateway.
             await gateway.disconnect();
             res.json({data: JSON.parse(result.toString())})
