@@ -102,6 +102,10 @@ class EMRAdmin extends Contract {
         }
         const emr = JSON.parse(emrAsBytes.toString());
 
+        if (emr.completed_at) {
+            throw new Error(`${emrNumber} has been completed`);
+        }
+
         if (patient != null && patient.length > 0) {
             emr.patient = JSON.parse(patient)
         }
@@ -130,6 +134,10 @@ class EMRAdmin extends Contract {
             throw new Error(`${emrNumber} does not exist`);
         }
         const emr = JSON.parse(emrAsBytes.toString());
+
+        if (emr.completed_at) {
+            throw new Error(`${emrNumber} has been completed`);
+        }
 
         let dt = new Date()
         emr.completed_at = dt.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh', hourCycle: 'h24' })
