@@ -269,7 +269,7 @@ module.exports = {
     
             // Get the contract from the network.
             const contract = network.getContract('emr-chaincode');
-            await contract.evaluateTransaction('completeEMR', emr_id);
+            await contract.submitTransaction('completeEMR', emr_id);
             // Disconnect from the gateway.
             await gateway.disconnect();
             res.json({
@@ -277,7 +277,7 @@ module.exports = {
             })
         } catch (error) {
             console.error(`Failed to submit transaction: ${error}`);
-            res.status(400).send({message: `Failed to get EMR history "${emr_id}"`})
+            res.status(400).send({message: `Failed to complete EMR "${emr_id}"`})
         }
     },
 }
