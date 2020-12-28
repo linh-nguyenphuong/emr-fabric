@@ -226,7 +226,7 @@ module.exports = {
             })
         } catch (error) {
             console.error(`Failed to submit transaction: ${error}`);
-            res.status(400).send({message: `Failed to create EMR "${visit_id}"`})
+            res.status(400).send({message: `Failed to create EMR`})
         }
     },
     complete: async (req, res) => {

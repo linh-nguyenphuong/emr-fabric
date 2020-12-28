@@ -4,6 +4,7 @@ module.exports = function(app) {
   let patientCtrl = require('./controllers/patientController')
   let emrsCtrl = require('./controllers/EMRsController');
   let emrsOwnCtrl = require('./controllers/EMRsOwnController');
+  let emrStatistic = require('./controllers/EMRStatistic');
 
   app.route('/api/register-user')
     .post(userCtrl.post)
@@ -27,4 +28,7 @@ module.exports = function(app) {
 
   app.route('/api/patient/emrs/:emr_id')
     .get(emrsOwnCtrl.detail)
+
+  app.route('/api/admin/statistic')
+    .get(emrStatistic.get)
 };
