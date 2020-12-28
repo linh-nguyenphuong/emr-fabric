@@ -94,8 +94,8 @@ module.exports = {
             res.json({
                 emr: emr_num,
                 emr_created_by_physician: emr_num_by_physician,
-                completed_emr_num: completed_emr_num,
-                uncompleted_emr_num: uncompleted_emr_num,
+                completed_emr: completed_emr_num,
+                uncompleted_emr: uncompleted_emr_num,
             })
         } catch (error) {
             console.error(`Failed to submit transaction: ${error}`);
