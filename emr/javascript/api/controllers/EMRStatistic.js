@@ -68,11 +68,11 @@ module.exports = {
                     physician_monthyear_count.push(monthyear)
                 }
 
-                if (emr.Record.complete_at) {
+                if (emr.Record.completed_at) {
                     completed_emr_monthyear_count.push(monthyear)
                 }
 
-                if (!emr.Record.complete_at) {
+                if (!emr.Record.completed_at) {
                     uncompleted_emr_monthyear_count.push(monthyear)
                 }
             })
